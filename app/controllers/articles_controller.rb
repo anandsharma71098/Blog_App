@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
             flash[:notice]="Article was successfully created!!!"
             #redirect_to article_path(@article)
             #   or   #
-            redirect_to articles_path#@article
+            redirect_to article_path(@article)#@article
         else
             render 'new'
         end
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
         #@article=Article.find(params[:id])
         if @article.update(article_params)
             flash[:notice]="Article was updated successfully!!!"
-            redirect_to articles_path#@article
+            redirect_to article_path(@article)#@article
         else
             render 'edit'
         end
