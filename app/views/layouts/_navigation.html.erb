@@ -21,20 +21,27 @@
           </li>
         <% end %>  
       
-        <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to current_user.username.upcase, user_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log Out", delete_path, class: "nav-link", method: :delete %>
-          </li>
-        <% else %>
+        <% if !logged_in? %>
           <li class="nav-item">
             <%= link_to "Log in", login_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Sign up", signup_path, class: "nav-link" %>
           </li>
+        <% else %>
+        <li>
+        <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to current_user.username,class:"btn btn-light dropdown-toggle" %>
+        </button>    
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "View Profile", user_path(current_user),class: "dropdown-item" %>
+          <%= link_to "Edit Profile", edit_user_path(current_user),class: "dropdown-item" %>
+          <%= link_to "Log Out", delete_path, class: "dropdown-item", method: :delete %>
+        </div>
+      </div>
+        
+        </li>
         <% end %>
       </ul>
       
