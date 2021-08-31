@@ -2,10 +2,12 @@
     <div class="container" id="home-container">
         <div class="jumbotron text-center text-white">
             <h1 class="display-4"><b>ALPHA BLOG</b></h1>
-            <p class="lead"><i>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.<i></p>
+            <p class="lead"><i><b>Alpha is the most advanced and best blogger template we have ever made. Alpha is full off features and widgets which will give your blog a stunning and professional look.<b><i></p>
             <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-success btn-lg" href="#" role="button">Sign up!</a>
+            <p> <i><b>it is useful and powerful blogger Newspaper, Magazine and Blog template.<b></i></p>
+            <% if !blogger_signed_in? %>
+                <%= link_to 'Sign up', new_blogger_registration_path, class:"btn btn-success btn-lg" %>
+            <% end %>    
         </div>
     </div>
 </div>
