@@ -15,23 +15,35 @@
         <li class="nav-item">
           <%= link_to "Articles", articles_path, class: "nav-link" %> 
         </li>
-        <li class="nav-item">
-          <%= link_to "Create", new_article_path, class: "nav-link" %> 
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Create", new_article_path, class: "nav-link" %> 
+          </li>
+        <% end %>  
+      
+        <% if !logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Log in", login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", signup_path, class: "nav-link" %>
+          </li>
+        <% else %>
+        <li>
+        <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to current_user.username,class:"btn btn-light dropdown-toggle" %>
+        </button>    
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to "View Profile", user_path(current_user),class: "dropdown-item" %>
+          <%= link_to "Edit Profile", edit_user_path(current_user),class: "dropdown-item" %>
+          <%= link_to "Delete Profile", user_path(current_user),class: "dropdown-item text-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= link_to "Log Out", delete_path, class: "dropdown-item", method: :delete %>
+        </div>
+      </div>
+        
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+        <% end %>
       </ul>
       
     </div>
