@@ -10,25 +10,38 @@
           <%= link_to "About", about_path, class: "nav-link" %> 
         </li>
         <li class="nav-item">
+          <%= link_to "Bloggers", bloggers_path, class: "nav-link" %> 
+        </li>
+        <li class="nav-item">
           <%= link_to "Articles", articles_path, class: "nav-link" %> 
         </li>
-        <li class="nav-item">
-          <%= link_to "Create", new_article_path, class: "nav-link" %> 
+
+        <% if blogger_signed_in? %>
+        <li>
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_blogger.email %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "View Profile", blogger_path(current_blogger), class: "dropdown-item" %>
+          <%= link_to "Edit Profile", edit_blogger_registration_path, class: "dropdown-item" %> 
+          <%= link_to "Create Article", new_article_path, class: "dropdown-item" %> 
+          <%= link_to "Sign out", destroy_blogger_session_path, class: "dropdown-item", method: :delete%> 
+          <%= link_to "Delete profile", blogger_path(current_blogger), class: "dropdown-item text-danger", method: :delete,data: {confirm: "Are you sure?"} %>
+        </div>
+      </div>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_blogger_registration_path, class: "nav-link" %> 
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_blogger_session_path, class: "nav-link" %> 
+          </li>
+        <% end %>  
+
+        
+        
       </ul>
       
     </div>
