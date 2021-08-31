@@ -6,7 +6,7 @@ class BloggersController < ApplicationController
 
     def show
         @blogger=Blogger.find(params[:id])
-        @articles=@blogger.articles
+        @articles=@blogger.articles.paginate(page: params[:page], per_page: 5)
     end
 
     def destroy
