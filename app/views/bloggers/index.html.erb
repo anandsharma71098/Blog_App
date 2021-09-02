@@ -15,7 +15,7 @@
                     <h5 class="card-title"><%= pluralize(blogger.articles.count,"article") %></h5>
                     <%= link_to "View Profile", blogger_path(blogger), class: "btn btn btn-outline-success" %>
                     <% if blogger_signed_in? && blogger==current_blogger %>
-                        <%= link_to "Edit Profile", edit_blogger_registration_path, class: "btn btn-outline-primary" %>
+                        <%= link_to "Edit Profile", edit_blogger_path(current_blogger), class: "btn btn-outline-primary" %>
                     <% end %>    
                 </div>
         <div class="card-footer text-muted">

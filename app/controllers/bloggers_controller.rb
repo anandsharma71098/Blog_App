@@ -11,7 +11,17 @@ class BloggersController < ApplicationController
     end
 
     def edit
-        
+        @blogger=Blogger.find(params[:id])
+    end
+
+    def update
+        @blogger=Blogger.find(params[:id])
+        if @blogger.update(params.require(:blogger).permit(:email,:password))
+            flash[:notice]="Your account updated successfully"
+            redirect_to articles_path
+        else
+            render 'edit'
+        end
     end
 
     def destroy

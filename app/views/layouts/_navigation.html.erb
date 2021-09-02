@@ -24,7 +24,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <%= link_to "View Profile", blogger_path(current_blogger), class: "dropdown-item" %>
-          <%= link_to "Edit Profile", edit_blogger_registration_path, class: "dropdown-item" %> 
+          <%= link_to "Edit Profile", edit_blogger_path(current_blogger), class: "dropdown-item" %> 
           <%= link_to "Create Article", new_article_path, class: "dropdown-item" %> 
           <%= link_to "Sign out", destroy_blogger_session_path, class: "dropdown-item", method: :delete%> 
           <%= link_to "Delete profile", blogger_path(current_blogger), class: "dropdown-item text-danger", method: :delete,data: {confirm: "Are you sure?"} %>

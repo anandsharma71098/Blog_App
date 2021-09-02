@@ -10,17 +10,18 @@ class Bloggers::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+    #super
     #byebug
-      #  blog=Blogger.find_by(email: params[:blogger][:email])
-      #  if blog
-      #   session[:blogger_id] = blog.id
-      #   flash[:notice]="Signed in Successfully"
-      #   redirect_to blogger_path(blog.id)
-      #  else
-      #   flash[:alert]="Incorrect login details"
-      #   redirect_to blogger_session_path
-      #  end
+       blog=Blogger.find_by(email: params[:blogger][:email])
+       if blog
+        session[:blogger_id] = blog.id
+        flash[:notice]="Signed in"
+        redirect_to blogger_path(blog.id)
+       else
+        flash[:alert]="Incorrect login details"
+        redirect_to blogger_session_path
+       end
+       
   end
 
 
@@ -29,11 +30,12 @@ class Bloggers::SessionsController < Devise::SessionsController
     #byebug
      super
     #  session[:blogger_id]=nil
+    #  @current_blogger=nil
     #  flash[:alert]="Logged out!!"
-    # session.delete(:blogger_id)
-    # session[:blogger_id]=nil
-    # redirect_to root_path
+    #   redirect_to root_path
   end
+
+
   
 
   # protected
