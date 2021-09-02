@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
    # def current_blogger
    #    @current_blogger ||= Blogger.find(session[:blogger_id]) if session[:blogger_id]
    # end

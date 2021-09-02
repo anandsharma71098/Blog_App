@@ -1,5 +1,5 @@
 class BloggersController < ApplicationController
-    #before_action :authenticate_blogger!
+    # before_action :authenticate_blogger!
     #before_action :require_user, only:[:edit,:update]
     def index
         @bloggers= Blogger.paginate(page: params[:page], per_page: 5)
