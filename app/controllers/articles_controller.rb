@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
     end
 
     def require_same_blogger
-        if current_blogger != @article.blogger
+        if current_blogger != @article.blogger && !current_blogger.admin?
             flash[:alert]="You can only edit or delete your own article"
             redirect_to @article
         end
