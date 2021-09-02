@@ -16,9 +16,27 @@
           <%= link_to "Articles", articles_path, class: "nav-link" %> 
         </li>
 
-        <% if blogger_signed_in? %>
+
         <li>
         <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <% if blogger_signed_in? && current_blogger.admin? %>
+            <%= link_to "Create new Category", new_category_path, class: "dropdown-item" %>
+          <% end %>   
+            <%= link_to "View Categories", categories_path, class: "dropdown-item" %>
+            
+        </div>
+      </div>
+        </li>
+
+
+
+        <% if blogger_signed_in? %>
+        <li>
+        <div class="dropdown ml-4">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%="(Admin)" if current_blogger.admin? %><%= current_blogger.email.split("@")[0].capitalize %>
         </button>

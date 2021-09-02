@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :articles, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   #get 'index', to: 'bloggers#index'
   resources :bloggers
+  resources :categories, except: [:destroy] 
 end
