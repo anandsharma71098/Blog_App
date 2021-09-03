@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
     end
 
     def create
+        #byebug
         #render plain: params[:article]
         @article=Article.new(article_params)
         #render plain: @article
@@ -58,7 +59,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-        params.require(:article).permit(:title,:description, :blogger_id)
+        params.require(:article).permit(:title,:description, :blogger_id,category_ids: [])
     end
 
     def require_same_blogger
